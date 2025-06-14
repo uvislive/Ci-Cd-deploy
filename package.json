@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -u \"github-actions-bot <support+actions@github.com>\" -r https://x-access-token:${GITHUB_TOKEN}@github.com/uvislive/Ci-Cd-deploy.git"
+    "deploy": "gh-pages -d dist"
 
   },
   "dependencies": {

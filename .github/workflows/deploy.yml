@@ -24,7 +24,13 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        run: npm run deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy
+        run: git config --global user.email "support+actions@github.com"
+             git config --global user.name "github-actions-bot"
+             npm run deploy -- -r https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/uvislive/Ci-Cd-deploy.git
+             env:
+                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+    # // "deploy": "gh-pages -d dist -u \"github-actions-bot <support+actions@github.com>\" -r https://x-access-token:${GITHUB_TOKEN}@github.com/uvislive/Ci-Cd-deploy.git"

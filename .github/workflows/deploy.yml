@@ -8,29 +8,26 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
       - name: Install Dependencies
-        # run: npm install --force
         run: npm ci
 
       - name: Build Project
         run: npm run build
 
-      - name: Deploy
-        run: git config --global user.email "support+actions@github.com"
-             git config --global user.name "github-actions-bot"
-             npm run deploy -- -r https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/uvislive/Ci-Cd-deploy.git
-             env:
-                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
-    # // "deploy": "gh-pages -d dist -u \"github-actions-bot <support+actions@github.com>\" -r https://x-access-token:${GITHUB_TOKEN}@github.com/uvislive/Ci-Cd-deploy.git"
+      - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.email "support+actions@github.com"
+          git config --global user.name "github-actions-bot"
+          npm run deploy -- -r https://x-access-token:${GITHUB_TOKEN}@github.com/uvislive/Ci-Cd-deploy.git

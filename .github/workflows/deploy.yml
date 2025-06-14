@@ -18,7 +18,8 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm install --force
+        # run: npm install --force
+        run: npm ci
 
       - name: Build Project
         run: npm run build

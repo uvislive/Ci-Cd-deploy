@@ -1,5 +1,5 @@
 {
-  "name": "my-ts-project",
+  "name": "ci-cd-deploy",
   "private": true,
   "version": "0.0.0",
   "type": "module",
